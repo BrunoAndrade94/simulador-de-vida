@@ -1,7 +1,7 @@
 class Evolucao {
   constructor(ambiente) {
     this.ambiente = ambiente;
-    this.taxaDeSelecao = 0.5;
+    this.taxaDeSelecao = TAXA_DE_SELECAO;
   }
 
   selecionarCriaturas() {
@@ -17,6 +17,8 @@ class Evolucao {
   }
 
   criarGeracao(criaturas) {
+    if (this.ambiente.criaturas.length === 0 || criaturas.length === 0) return;
+
     const novaGeracao = [];
 
     while (novaGeracao.length < this.ambiente.criaturas.length) {

@@ -1,28 +1,74 @@
 class Ambiente {
   constructor() {
     this.criaturas = [];
-    this.evolucao = new Evolucao(this);
+    this.comidas = [];
+    this.taxaSurgimentoComida = TAXA_SURGIMENTO_COMIDA;
+    this.valorComida = VALOR_DA_COMIDA;
+    // this.evolucao = new Evolucao(this);
   }
 
   adicionarCriatura(criatura) {
-    if (criatura instanceof Criatura) this.criaturas.push(criatura);
-    else console.error("CRIATURA NAO VALIDA");
+    this.criaturas.push(criatura);
+  }
+
+  adicionarComida() {
+    if (TOTAL_COMIDAS >= MAXIMO_COMIDA) return;
+
+    if (random(1) < this.taxaSurgimentoComida) {
+      let comida = new Comida(this.valorComida);
+      this.comidas.push(comida);
+    }
   }
 
   atualizar() {
-    for (let criatura of this.criaturas) criatura.atualizar();
+    for (let criatura of this.criaturas) {
+      criatura.atualizar();
+    }
+
+    this.seAchouComida();
 
     this.criaturas = this.criaturas.filter((criatura) => criatura.seEstaVivo());
 
-    this.evolucao.evoluir();
+    this.adicionarComida();
+    // this.evolucao.evoluir();
+  }
+
+  seAchouComida() {
+    for (let criatura of this.criaturas) {
+      for (let i = 0; i < this.comidas.length; i++) {
+        let comida = this.comidas[i];
+        let distancia = dist(
+          criatura.posicao.x,
+          criatura.posicao.y,
+          criatura.posicao.z,
+          comida.posicao.x,
+          comida.posicao.y,
+          comida.posicao.z
+        );
+
+        // Verifica se a criatura tocou a comida
+        if (distancia < criatura.raio + comida.tamanho) {
+          criatura.saude += comida.valor; // A criatura absorve o valor da comida
+          this.comidas.splice(i, 1); // Remove a comida do ambiente
+          break; // Para não tentar acessar o próximo índice depois de remover a comida
+        }
+      }
+    }
+    TOTAL_COMIDAS = this.comidas.length;
   }
 
   exibir() {
     for (let criatura of this.criaturas) {
       push();
-      translate(criatura.posicao.x, this.posicao.y, this.posicao.z);
-      sphere(criatura.raio * 10);
+      noStroke();
+      fill(criatura.corSaude());
+      translate(criatura.posicao.x, criatura.posicao.y, criatura.posicao.z);
+      sphere(criatura.raio);
       pop();
+    }
+
+    for (let comida of this.comidas) {
+      comida.exibir();
     }
   }
 }

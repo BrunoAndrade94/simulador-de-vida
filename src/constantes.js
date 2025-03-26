@@ -3,4 +3,21 @@ const HEIGHT = 1300;
 const MEIO_WIDTH = WIDTH / 2;
 const MEIO_HEIGHT = HEIGHT / 2;
 
-const COR_DE_FUNDO = 1;
+let FONTE;
+const COR_DE_FUNDO = 30;
+
+const CRIATURAS_INICIAIS = 20;
+// const TAXA_DE_SELECAO = random(0.01, 0.02);
+const TAXA_DE_SELECAO = 0.02;
+
+// const SAUDE_CRIATURA = random(1e1, 1e3);
+// const SAUDE_CRIATURA = 1000;
+
+let TOTAL_COMIDAS;
+const MAXIMO_COMIDA = 100;
+const VALOR_DA_COMIDA = 0.01;
+const RAIO_COMIDA = 5;
+const TAXA_SURGIMENTO_COMIDA = 1;
+
+let PAINEL;
+let AMBIENTE, EVOLUCAO;
