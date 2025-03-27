@@ -7,14 +7,15 @@ let FONTE;
 const COR_DE_FUNDO = 30;
 
 const CRIATURAS_INICIAIS = 20;
+const CRIATURAS_SAUDE = 200;
 // const TAXA_DE_SELECAO = random(0.01, 0.02);
-const TAXA_DE_SELECAO = 0.02;
+const TAXA_DE_SELECAO = 5.22;
 
 // const SAUDE_CRIATURA = random(1e1, 1e3);
 // const SAUDE_CRIATURA = 1000;
 
 let TOTAL_COMIDAS;
-const MAXIMO_COMIDA = 100;
+const MAXIMO_COMIDA = 50;
 const VALOR_DA_COMIDA = 0.01;
 const RAIO_COMIDA = 5;
 const TAXA_SURGIMENTO_COMIDA = 1;

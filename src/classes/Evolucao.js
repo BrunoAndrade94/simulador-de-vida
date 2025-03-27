@@ -2,6 +2,7 @@ class Evolucao {
   constructor(ambiente) {
     this.ambiente = ambiente;
     this.taxaDeSelecao = TAXA_DE_SELECAO;
+    this.intevalorDeEvolucao = 300; // evoluir por frame, nao se vou manter
   }
 
   selecionarCriaturas() {
@@ -37,6 +38,7 @@ class Evolucao {
 
   evoluir() {
     const criaturas = this.selecionarCriaturas();
-    this.criarGeracao(criaturas);
+    const nova = this.criarGeracao(criaturas);
+    this.ambiente.add(nova);
   }
 }

@@ -15,5 +15,5 @@ function novosObjetos() {
     AMBIENTE.adicionarCriatura(new Criatura());
   }
 
-  // EVOLUCAO = new Evolucao(AMBIENTE);
+  EVOLUCAO = new Evolucao(AMBIENTE);
 }
